@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:3.6
+    environment:
+      - MONGODB_ADMIN_USER=admin
+      - MONGODB_ADMIN_PASS=admin123
+      - MONGODB_APPLICATION_DATABASE=movie_reviews
+      - MONGODB_APPLICATION_USER=movie
+      - MONGODB_APPLICATION_PASS=movie123
+    ports:
+      - 0.0.0.0:27017:27017
+    volumes:
+      - ${PWD}/tmp/mongodb_data:/data/db
+
+

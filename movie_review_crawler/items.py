@@ -11,4 +11,14 @@ import scrapy
 class MovieReviewCrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    url = scrapy.Field()
+    title = scrapy.Field()
+    summary = scrapy.Field()
+    body = scrapy.Field()
+    author = scrapy.Field()
+    time = scrapy.Field()
+    source = scrapy.Field()
+    url_md5 = scrapy.Field()
+    created_at = scrapy.Field()
+    meta = scrapy.Field()
+    summary_image = scrapy.Field()

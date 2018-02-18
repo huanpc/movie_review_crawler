@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'movie_review_crawler.spiders'
 #USER_AGENT = 'movie_review_crawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,9 +64,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'movie_review_crawler.pipelines.MovieReviewCrawlerPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'movie_review_crawler.pipelines.DuplicatesPipeline': 300,
+    'movie_review_crawler.pipelines.MovieReviewCrawlerPipeline': 301,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -83,8 +84,15 @@ ROBOTSTXT_OBEY = True
 
 # Enable and configure HTTP caching (disabled by default)
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
+HTTPCACHE_ENABLED = True
 #HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = 'httpcache'
-#HTTPCACHE_IGNORE_HTTP_CODES = []
-#HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+HTTPCACHE_DIR = 'httpcache'
+HTTPCACHE_IGNORE_HTTP_CODES = [302,401,403,404,407,500,501,502,503,504,522,524]
+HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# LOG_LEVEL = 'ERROR'
+LOG_FILE = 'logs/moveek_`date +%Y-%m-%d"_"%H-%M-%S`.log'
+
+
+# Mongo
+MONGO_URI = 'mongodb://movie:movie123@localhost:27017'
+MONGO_DATABASE = 'movie_reviews'
